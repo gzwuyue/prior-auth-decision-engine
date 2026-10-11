@@ -17,6 +17,7 @@ def load_policies(path: Path | None = None) -> dict[str, Policy]:
             policy_id=p["policy_id"],
             service=p["service"],
             logic=p.get("logic", ""),
+            cpt_codes=p.get("cpt_codes", []),
             required=[Criterion(**c) for c in p["required"]],
             override_any=[Criterion(**c) for c in p.get("override_any", [])],
         )
@@ -26,3 +27,12 @@ def load_policies(path: Path | None = None) -> dict[str, Policy]:
 def load_requests(path: Path | None = None) -> list[PARequest]:
     lines = (path or DATA_DIR / "requests.jsonl").read_text().splitlines()
     return [PARequest(**json.loads(line)) for line in lines if line.strip()]
+
+
+def load_public_notes(path: Path | None = None) -> list[PARequest]:
+    """Real transcription samples from MTSamples (unlabeled; see data/public_notes_NOTICE.md)."""
+    return load_requests(path or DATA_DIR / "public_notes.jsonl")
+
+
+def cpt_index(policies: dict[str, Policy]) -> dict[str, str]:
+    return {code.upper(): pid for pid, p in policies.items() for code in p.cpt_codes}

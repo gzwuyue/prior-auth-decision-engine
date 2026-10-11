@@ -1,7 +1,8 @@
 """Prior-authorization decision engine demo: Claude extracts evidence, rules decide, humans own denials."""
-from .data import load_policies, load_requests
+from .data import cpt_index, load_policies, load_public_notes, load_requests
 from .decision import decide
 from .engine import PriorAuthEngine
 from .extractors import ClaudeExtractor, KeywordExtractor
+from .intake import ClaudeDocumentReader, TesseractReader
 
-__all__ = ["load_policies", "load_requests", "decide", "PriorAuthEngine", "ClaudeExtractor", "KeywordExtractor"]
+__all__ = ["cpt_index", "load_policies", "load_public_notes", "load_requests", "ClaudeDocumentReader", "TesseractReader", "decide", "PriorAuthEngine", "ClaudeExtractor", "KeywordExtractor"]

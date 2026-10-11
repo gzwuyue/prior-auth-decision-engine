@@ -32,6 +32,7 @@ class Policy:
     required: list[Criterion]
     override_any: list[Criterion] = field(default_factory=list)
     logic: str = ""
+    cpt_codes: list[str] = field(default_factory=list)
 
     @property
     def all_criteria(self) -> list[Criterion]:
@@ -46,6 +47,7 @@ class PARequest:
     provider: str
     clinical_note: str
     gold: dict | None = None
+    source: dict | None = None
 
 
 @dataclass

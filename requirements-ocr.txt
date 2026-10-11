@@ -1,0 +1,5 @@
+# Optional: offline OCR with Tesseract, and regenerating the fax PDFs
+-r requirements.txt
+pillow>=10.0
+pymupdf>=1.24
+pytesseract>=0.3.10
