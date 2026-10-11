@@ -1,0 +1,111 @@
+{
+  "_disclaimer": "Illustrative, simplified policies written for this demo. They are NOT real medical or payer coverage policies.",
+  "policies": [
+    {
+      "policy_id": "MRI-LSPINE-01",
+      "service": "MRI lumbar spine without contrast",
+      "cpt_codes": ["72148"],
+      "logic": "Approve if any override criterion is met, or if all required criteria are met.",
+      "required": [
+        {
+          "id": "LBP_DURATION",
+          "text": "Low back pain has persisted for at least 6 weeks.",
+          "baseline_patterns": {
+            "met": ["(\\d+|six|seven|eight|nine|ten|twelve)\\s+(weeks|months)", "since (january|february|march|april|may|june|july|august|september|october|november|december)"],
+            "not_met": ["(\\d|one|two|three|four|five)\\s+(days|weeks?) ago", "started (yesterday|last week)"]
+          }
+        },
+        {
+          "id": "CONSERVATIVE_TX",
+          "text": "At least 6 weeks of conservative therapy (physical therapy, NSAIDs, or activity modification) has been tried without adequate relief.",
+          "baseline_patterns": {
+            "met": ["physical therapy", "\\bPT\\b", "nsaid", "ibuprofen", "naproxen"],
+            "not_met": ["no (prior )?(physical therapy|PT|treatment)", "has not tried"]
+          }
+        }
+      ],
+      "override_any": [
+        {
+          "id": "RED_FLAGS",
+          "text": "Red-flag findings are present: saddle anesthesia, new bowel or bladder dysfunction, progressive neurological deficit, history of cancer with new back pain, or fever with suspected infection.",
+          "baseline_patterns": {
+            "met": ["saddle anesthesia", "incontinence", "urinary retention", "foot drop", "progressive (weakness|numbness)", "history of .*cancer", "fever"],
+            "not_met": ["no red flags", "denies (bowel|bladder)"]
+          }
+        }
+      ]
+    },
+    {
+      "policy_id": "GLP1-WM-01",
+      "service": "GLP-1 receptor agonist for chronic weight management",
+      "cpt_codes": ["J3490"],
+      "logic": "Approve only if all required criteria are met.",
+      "required": [
+        {
+          "id": "BMI_THRESHOLD",
+          "text": "BMI is 30 or higher, or 27 or higher with at least one weight-related comorbidity (e.g., hypertension, type 2 diabetes, dyslipidemia, obstructive sleep apnea).",
+          "baseline_patterns": {
+            "met": ["bmi (of |is |=|: )?(3\\d|4\\d|5\\d)", "bmi (of |is |=|: )?(2[7-9]).*(hypertension|diabetes|dyslipidemia|sleep apnea)"],
+            "not_met": ["bmi (of |is |=|: )?(1\\d|2[0-6])"]
+          }
+        },
+        {
+          "id": "LIFESTYLE_PROGRAM",
+          "text": "The member has participated in a structured diet and exercise program for at least 3 months.",
+          "baseline_patterns": {
+            "met": ["(weight management|lifestyle|nutrition|diet and exercise) program", "dietitian"],
+            "not_met": ["no (structured )?(diet|lifestyle|weight) program", "declined (the )?(program|dietitian)"]
+          }
+        },
+        {
+          "id": "NO_MTC_MEN2",
+          "text": "No personal or family history of medullary thyroid carcinoma (MTC) or Multiple Endocrine Neoplasia type 2 (MEN2).",
+          "baseline_patterns": {
+            "met": ["no (personal or family )?history of (medullary thyroid|mtc|men2|men 2)", "denies .*(thyroid cancer|mtc|men2)"],
+            "not_met": ["(mother|father|sister|brother|family history).*(medullary thyroid|mtc|men2|men 2)", "history of medullary thyroid"]
+          }
+        }
+      ]
+    },
+    {
+      "policy_id": "TKA-01",
+      "service": "Total knee arthroplasty",
+      "cpt_codes": ["27447"],
+      "logic": "Approve only if all required criteria are met.",
+      "required": [
+        {
+          "id": "RADIOGRAPHIC_OA",
+          "text": "Imaging shows advanced osteoarthritis of the affected knee (Kellgren-Lawrence grade 3 or 4, or bone-on-bone).",
+          "baseline_patterns": {
+            "met": ["kellgren[- ]lawrence (grade )?(3|4|iii|iv)", "\\bkl (grade )?(3|4)", "bone[- ]on[- ]bone"],
+            "not_met": ["kellgren[- ]lawrence (grade )?(1|2|i|ii)\\b", "\\bkl (grade )?(1|2)\\b", "mild (degenerative|arthritic) changes"]
+          }
+        },
+        {
+          "id": "FAILED_CONSERVATIVE",
+          "text": "At least 3 months of conservative management (physical therapy, injections, NSAIDs, bracing, or weight loss) has failed.",
+          "baseline_patterns": {
+            "met": ["physical therapy", "injection", "nsaid", "brace"],
+            "not_met": ["no (prior )?(conservative|physical therapy|injections)"]
+          }
+        },
+        {
+          "id": "FUNCTIONAL_LIMITATION",
+          "text": "Knee pain causes significant functional limitation in activities of daily living.",
+          "baseline_patterns": {
+            "met": ["unable to", "difficulty (walking|climbing|with stairs)", "limited to", "uses a cane", "walker"],
+            "not_met": ["no functional limitation", "fully active"]
+          }
+        },
+        {
+          "id": "BMI_UNDER_40",
+          "text": "BMI is below 40.",
+          "baseline_patterns": {
+            "met": ["bmi (of |is |=|: )?([1-3]\\d)\\b"],
+            "not_met": ["bmi (of |is |=|: )?([4-6]\\d)\\b"]
+          }
+        }
+      ]
+    }
+  ]
+}

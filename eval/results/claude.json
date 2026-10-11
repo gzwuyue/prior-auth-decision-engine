@@ -1,0 +1,109 @@
+{
+  "extractor": "claude",
+  "model": "claude-sonnet-5-5",
+  "n_requests": 12,
+  "decision_accuracy": 1.0,
+  "criterion_accuracy": 0.872,
+  "unsafe_approvals": 0,
+  "missed_approvals": 0,
+  "ungrounded_evidence": 0,
+  "confusion": {
+    "APPROVE -> APPROVE": 5,
+    "PEND_CLINICAL_REVIEW -> PEND_CLINICAL_REVIEW": 6,
+    "REQUEST_INFO -> REQUEST_INFO": 1
+  },
+  "rows": [
+    {
+      "request_id": "PA-1001",
+      "gold": "APPROVE",
+      "pred": "APPROVE",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-1002",
+      "gold": "PEND_CLINICAL_REVIEW",
+      "pred": "PEND_CLINICAL_REVIEW",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-1003",
+      "gold": "APPROVE",
+      "pred": "APPROVE",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-1004",
+      "gold": "PEND_CLINICAL_REVIEW",
+      "pred": "PEND_CLINICAL_REVIEW",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-1005",
+      "gold": "APPROVE",
+      "pred": "APPROVE",
+      "correct": true,
+      "criterion_misses": [
+        "LBP_DURATION: NOT_DOCUMENTED (gold MET)"
+      ]
+    },
+    {
+      "request_id": "PA-2001",
+      "gold": "APPROVE",
+      "pred": "APPROVE",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-2002",
+      "gold": "PEND_CLINICAL_REVIEW",
+      "pred": "PEND_CLINICAL_REVIEW",
+      "correct": true,
+      "criterion_misses": [
+        "LIFESTYLE_PROGRAM: NOT_DOCUMENTED (gold MET)",
+        "NO_MTC_MEN2: NOT_DOCUMENTED (gold MET)"
+      ]
+    },
+    {
+      "request_id": "PA-2003",
+      "gold": "PEND_CLINICAL_REVIEW",
+      "pred": "PEND_CLINICAL_REVIEW",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-2004",
+      "gold": "REQUEST_INFO",
+      "pred": "REQUEST_INFO",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-3001",
+      "gold": "APPROVE",
+      "pred": "APPROVE",
+      "correct": true,
+      "criterion_misses": []
+    },
+    {
+      "request_id": "PA-3002",
+      "gold": "PEND_CLINICAL_REVIEW",
+      "pred": "PEND_CLINICAL_REVIEW",
+      "correct": true,
+      "criterion_misses": [
+        "FAILED_CONSERVATIVE: NOT_DOCUMENTED (gold MET)",
+        "FUNCTIONAL_LIMITATION: NOT_DOCUMENTED (gold MET)"
+      ]
+    },
+    {
+      "request_id": "PA-3003",
+      "gold": "PEND_CLINICAL_REVIEW",
+      "pred": "PEND_CLINICAL_REVIEW",
+      "correct": true,
+      "criterion_misses": []
+    }
+  ]
+}
